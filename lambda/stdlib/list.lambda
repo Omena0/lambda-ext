@@ -1,0 +1,41 @@
+# Church List Implementation
+# Lists are encoded as right-folding functions: λc.λn. FOLDR c n
+
+# Basic constructors
+$\bnil\b -> λc.λn.n
+$cons -> λh.λt.λc.λn.c h (t c n)
+
+# List accessors
+$head -> λl.l (λh.λt.h) false
+$tail -> λl.λc.λn.l (λh.λt.λacc.t c n) n
+$isnil -> λl.l (λh.λt.λa.λb.b) (λa.λb.a)
+
+# List construction helpers
+$list1 -> λa.cons a nil
+$list2 -> λa.λb.cons a (cons b nil)
+$list3 -> λa.λb.λc.cons a (cons b (cons c nil))
+
+# List operations
+$length -> λl.l (λh.λt.λn.λf.λx.f (n f x)) (λf.λx.x)
+$append -> λl1.λl2.l1 cons l2
+$reverse -> λl.l (λh.λt.λacc.append acc (list1 h)) nil
+
+# Higher-order functions  
+$map -> λf.λl.l (λh.λt.cons (f h) t) nil
+$filter -> λp.λl.l (λh.λt.λacc.p h (cons h acc) acc) nil
+$foldl -> λf.λz.λl.l (λh.λt.λacc.foldl f (f acc h) t) z
+$foldr -> λf.λz.λl.l f z
+
+# List predicates
+$all -> λp.λl.l (λh.λt.λacc.p h (t acc) false) true
+$any -> λp.λl.l (λh.λt.λacc.p h true (t acc)) false
+
+# List utilities
+$nth -> λn.λl.n tail l head
+$take -> λn.λl.n (λprev.λremaining.isnil remaining nil (cons (head remaining) (prev (tail remaining)))) (λx.nil) l
+$drop -> λn.λl.n tail l
+
+# Pair operations
+$pair -> λx.λy.λf.f x y
+$fst -> λp.p (λx.λy.x)
+$snd -> λp.p (λx.λy.y)

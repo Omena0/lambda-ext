@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.lambda",
+  "patterns": [
+    {
+      "name": "comment.line.hash.lambda",
+      "match": "^(?!\\$).*#.*"
+    },
+    {
+      "name": "keyword.control.lambda",
+      "match": "\\b(if|else|while|return)\\b"
+    },
+    {
+      "name": "constant.numeric.lambda",
+      "match": "\\b\\d+\\b"
+    },
+    {
+      "name": "string.quoted.double.lambda",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.lambda",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "entity.name.function.lambda",
+      "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*"
+    },
+    {
+      "name": "keyword.operator.lambda",
+      "match": "->"
+    },
+    {
+      "name": "meta.brackets.lambda",
+      "match": "[\\[\\]\\(\\)\\{\\}]"
+    },
+    {
+      "name": "constant.language.lambda",
+      "match": "\\b(true|false|nil)\\b"
+    },
+    {
+      "name": "meta.lambda.expression",
+      "match": "\\u03bb[a-zA-Z_][a-zA-Z0-9_]*"
+    },
+    {
+      "name": "meta.header.lambda",
+      "match": "^#.*$"
+    }
+  ]
+}

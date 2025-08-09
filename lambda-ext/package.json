@@ -1,0 +1,40 @@
+{
+  "name": "lambda-extension",
+  "displayName": "Lambda Syntax Highlighting",
+  "description": "Syntax highlighting for .lambda files.",
+  "version": "1.0.0",
+  "publisher": "Omena0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:lambda"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "lambda",
+        "aliases": ["Lambda", "lambda"],
+        "extensions": [".lambda"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lambda",
+        "scopeName": "source.lambda",
+        "path": "./syntaxes/lambda.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "start": "python server.py"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.0"
+  }
+}

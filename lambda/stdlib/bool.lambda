@@ -1,0 +1,7 @@
+# True boolean
+# Returns the first argument passed to it
+$true -> λx.λy.x
+
+# False boolean
+# Returns the second argument passed to it
+$false -> λx.λy.y
